@@ -1,0 +1,45 @@
+﻿@page
+@model ASPWebApplication.Pages.PeopleList.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>People</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="People.PersonId" />
+            <div class="form-group">
+                <label asp-for="People.FirstName" class="control-label"></label>
+                <input asp-for="People.FirstName" class="form-control" />
+                <span asp-validation-for="People.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="People.LastName" class="control-label"></label>
+                <input asp-for="People.LastName" class="form-control" />
+                <span asp-validation-for="People.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="People.JobRole" class="control-label"></label>
+                <input asp-for="People.JobRole" class="form-control" />
+                <span asp-validation-for="People.JobRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

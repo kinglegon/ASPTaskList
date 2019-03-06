@@ -1,0 +1,75 @@
+﻿@page
+@model ASPWebApplication.Pages.TaskList.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+	<a asp-page="../Index">Back to Main Page</a>
+</div>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+
+
+<form>
+	<p>
+		<select asp-for="CompletedCheck">
+			<option value="ALL">All</option>
+			<option value="Completed">Completed</option>
+			<option value="Not Completed">Not Completed</option>
+			<
+		</select>
+		<input type="submit" value="Filter" />
+	</p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tasks[0].TaskDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tasks[0].Task)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tasks[0].Completed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tasks[0].Person)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tasks) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Completed)
+            </td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Person.FirstName)
+				@Html.DisplayFor(modelItem => item.Person.LastName)
+			</td>
+			<td>
+				<a asp-page="./Complete" asp-route-id="@item.TaskId">Complete</a> |
+				<a asp-page="./Edit" asp-route-id="@item.TaskId">Edit</a> |
+				<a asp-page="./Details" asp-route-id="@item.TaskId">Details</a> |
+				<a asp-page="./Delete" asp-route-id="@item.TaskId">Delete</a>
+			</td>
+        </tr>
+}
+    </tbody>
+</table>
